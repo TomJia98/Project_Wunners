@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spicy Gospel</title>
+    <link rel="stylesheet" href="assets/css/reset.css"/>
+    <!-- reset -->
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <!-- jQuery UI <link> tag -->
+
+
+
+</head>
+<body>
+
+    <div id="first-page">
+
+        <h1>Spicy Gospel</h1>
+
+        <p>amount of songs</p>
+  <input type="range" min="1" max="10" value="5">
+
+        <button id="start">Begin Game</button>
+        <button id="check-scores">view highscores</button>
+
+    </div>
+
+    <div id="second-page" style="display:none;">
+<!-- change display once the game starts -->
+
+        <span id="time">insert time here</span>
+
+
+        <p>Lyrics go here</p>
+
+        <input type="text" id="answer">
+        <button id="submit-answer">submit</button>
+
+    </div>
+
+    <div id="highscore" style="display:none;">
+<!-- change display once the game is completed -->
+
+        <h2>highscores</h2>
+
+        <ol id="scores">
+
+        </ol>
+
+        <button>Try Again</button>
+
+
+        <button id="reset">Reset Scores</button>
+    
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <!-- jQuery -->
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <!-- jQuery UI <script> tag -->
+
+    <script src="assets/javaScript/Jacksons_js_getLyrics.js"></script>
+<!-- jacksons js -->
+    <script src="assets/javaScript/Toms_js_impliment.js"></script>
+<!-- toms js -->
+    <script src="assets/javaScript/Tahlia_js_highscore.js"></script>
+<!-- tahlias js -->
+</body>
+</html>
