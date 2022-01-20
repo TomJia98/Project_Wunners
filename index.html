@@ -20,13 +20,24 @@
     <!-- jQuery UI <link> tag -->
   </head>
   <body>
-    <div id="first-page" lass="container">
-      <h1>Spicy Gospel</h1>
-      <p>amount of songs</p>
-      <input type="range" min="1" max="10" value="5" />
-
-      <button id="start">Begin Game</button>
-      <button id="check-scores">view highscores</button>
+    <div id="first-page" class="container">
+      <div class="row">
+        <h1>Spicy Gospel</h1>
+        <p>amount of songs</p>
+        <input type="range" min="1" max="10" value="5" />
+        <div class="row">
+          <div class="six columns">
+            <button id="check-scores" class="button-primary">
+              view highscores
+            </button>
+          </div>
+          <div class="six columns">
+            <button id="check-scores" class="button-primary">
+              view highscores
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="second-page" style="display: none" class="container">
@@ -37,19 +48,38 @@
       <p>Lyrics go here</p>
 
       <input type="text" id="answer" />
-      <button id="submit-answer">submit</button>
+      <input
+        id="submit-answer"
+        class="button-primary"
+        type="submit"
+        value="Submit"
+      />
     </div>
 
-    <div id="highscore" style="display: none" class="container">
+    <div id="highscore" style="display: block" class="container">
       <!-- change display once the game is completed -->
 
       <h2>highscores</h2>
 
+      <div class="row">
+        <div class="four columns" style="background-color: yellow;"></div>
+        <div class="four columns" style="background-color: red">
+          <label for="username">Your Initials</label>
+          <input type="text" id="username" name="username" />
+        </div>
+        <div class="four columns"></div>
+      </div>
+
       <ol id="scores"></ol>
 
-      <button>Try Again</button>
-
-      <button id="reset">Reset Scores</button>
+      <div class="row">
+        <div class="six columns">
+          <button class="button-primary">Try Again</button>
+        </div>
+        <div class="six columns">
+          <button id="reset" class="button-primary">Reset Scores</button>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
