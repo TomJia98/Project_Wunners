@@ -1,4 +1,13 @@
+const timer = $("#time");
+const answer = $("#answer")
 
+
+
+var allSongs = [
+    "song1",
+    "song2",
+    "bazinga"
+];
 var chosenSong = {
     songname: "bazinga",
     lyrics: "party rock is in the house tonight ikfgbsdv everybody is going to lose their minds"
@@ -7,7 +16,6 @@ var chosenSong = {
 function getWords(text){
     let x = text.replace(/[^A-Za-z0-9]+/g, " ");
     let newArr = x.trim().split(" ");
-    console.log(newArr);
     return newArr;
 }
 // seperates out the lyrics string into an array
@@ -15,6 +23,22 @@ var lyricsArr = getWords(chosenSong.lyrics);
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max)
+};
+ 
+
+var timeTaken = 1;
+var roundFinished = false;// change this value if the song is correctly guessed
+
+function startTimer(){
+    var timeInterval = setInterval(function () {
+        timer.text(timeTaken);
+        timeTaken++;
+        if (roundFinished) {
+          clearInterval(timeInterval);
+          loadHighscore();
+        }
+      }, 1000);
+
 };
 
 var minimumWord = 4;//sets the minimum word size to be changed
@@ -61,16 +85,27 @@ else {
     //if the selected word is shorter than the set minimum size, do nothing and skip
 }}
 else {
-    console.log(lyricsArr, "<---")
     var finished = lyricsArr.join(" ");
-    console.log(finished)
     $("#finished-lyrics").text(finished)
+    startTimer();//once the lyrics are loaded, start the timer
     }}
 
-changeLyrics();
+
+   // changeLyrics();// place this in the event listener for the start game button
 
 $(function () {
-    $('#answer').autocomplete({
+    answer.autocomplete({
       source: allSongs,
     });
   });// autofills from the allsongs array
+
+$("#submit-answer").on("click", function clickSubmit(){
+if (answer.val()== chosenSong.songname){
+    console.log("correct song chosen");
+    roundFinished = true;
+    //add the function to load the highscore page here
+
+} else {
+    timeTaken = timeTaken + 10;
+}
+})
