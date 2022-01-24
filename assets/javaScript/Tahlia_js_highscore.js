@@ -22,10 +22,6 @@ var score = {
   finalScore: timeTaken,
 };
 
-var array = $.map(score, function (value, index) {
-  return [value];
-});
-
 saveScoreBtn.on("click", function saveHighScore(e) {
   e.preventDefault();
   score.name = username.val();
