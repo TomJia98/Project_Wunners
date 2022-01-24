@@ -20,11 +20,11 @@
     <!-- jQuery UI <link> tag -->
   </head>
   <body>
-    <div id="first-page" class="container">
+    <div id="first-page" style="display: none" class="container">
       <div class="row">
         <h1>Spicy Gospel</h1>
         <p>amount of songs</p>
-        <input type="range" min="1" max="10" value="5" />
+        <input type="range" id="amount-of-songs" min="1" max="10" value="5" />
         <div class="row">
           <div class="six columns">
             <button id="check-scores" class="button-primary">
@@ -56,28 +56,35 @@
       />
     </div>
 
-    <div id="highscore" style="display: block" class="container">
+    <div id="highscore" class="container">
       <!-- change display once the game is completed -->
 
-      <h2>highscores</h2>
+      <h1 id="final-score">0</h1>
+      <h2>Highscores</h2>
 
       <div class="row">
-        <div class="four columns" style="background-color: yellow;"></div>
-        <div class="four columns" style="background-color: red">
+        <div class="four columns"></div>
+        <div class="four columns">
           <label for="username">Your Initials</label>
-          <input type="text" id="username" name="username" />
+          <input
+            type="text"
+            name="name"
+            id="username"
+            placeholder="Enter your Initials"
+          />
         </div>
         <div class="four columns"></div>
       </div>
 
-      <ol id="scores"></ol>
+      <ul id="scores"></ul>
 
       <div class="row">
         <div class="six columns">
-          <button class="button-primary">Try Again</button>
+          <button id="save" class="button-primary" type="submit"
+          >Save</button>
         </div>
         <div class="six columns">
-          <button id="reset" class="button-primary">Reset Scores</button>
+          <button id="try-again" class="button-primary">Try Again</button>
         </div>
       </div>
     </div>
