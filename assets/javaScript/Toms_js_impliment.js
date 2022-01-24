@@ -13,36 +13,36 @@ var chosenSong = {
     lyrics: "party rock is in the house tonight ikfgbsdv everybody is going to lose their minds"
 }//placeholder song object
 
+var timeTaken = 1;
+var roundFinished = false;// change this value if the song is correctly guessed
+
+// seperates out the lyrics string into an array
+var lyricsArr = getWords(chosenSong.lyrics);
+
+var minimumWord = 4;//sets the minimum word size to be changed
+var loop = 0;//the basis for the "custom" for loop
+
 function getWords(text){
     let x = text.replace(/[^A-Za-z0-9]+/g, " ");
     let newArr = x.trim().split(" ");
     return newArr;
 }
-// seperates out the lyrics string into an array
-var lyricsArr = getWords(chosenSong.lyrics);
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max)
 };
  
-
-var timeTaken = 1;
-var roundFinished = false;// change this value if the song is correctly guessed
-
-function startTimer(){
+function startTimer(){// adds the timer
     var timeInterval = setInterval(function () {
         timer.text(timeTaken);
-        timeTaken++;
+        timeTaken++
         if (roundFinished) {
           clearInterval(timeInterval);
-          loadHighscore();
         }
       }, 1000);
 
 };
 
-var minimumWord = 4;//sets the minimum word size to be changed
-var loop = 0;
 
  function changeLyrics(){//self made for loop with different outcomes based on the fetch response
     if (loop < lyricsArr.length){
@@ -99,6 +99,7 @@ $(function () {
     });
   });// autofills from the allsongs array
 
+
 $("#submit-answer").on("click", function clickSubmit(){
 if (answer.val()== chosenSong.songname){
     console.log("correct song chosen");
@@ -109,3 +110,4 @@ if (answer.val()== chosenSong.songname){
     timeTaken = timeTaken + 10;
 }
 })
+changeLyrics();
