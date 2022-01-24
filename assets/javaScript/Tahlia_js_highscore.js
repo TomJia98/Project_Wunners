@@ -16,12 +16,8 @@ function displayFinalTime() {
 
 finalScore.innerText = highScores;
 
-username.on("keyup", () => {
-  saveScoreBtn.disabled = !username.value;
-});
-
 var score = {
-  name: username,
+  name: "",
   amountofSongs: amountofSongs,
   finalScore: timeTaken,
 };
@@ -34,8 +30,8 @@ saveScoreBtn.on("click", function saveHighScore(e) {
   e.preventDefault();
   score.name = username.val();
   localStorage.setItem("score", JSON.stringify(score));
+  settingUl();
 });
-
 
 function settingUl() {
   const li = $("<li>");
@@ -46,5 +42,4 @@ function settingUl() {
 }
 
 displayFinalTime();
-settingUl();
 console.log(highScores);
