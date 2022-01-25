@@ -36,6 +36,9 @@ function startTimer(){// adds the timer
     var timeInterval = setInterval(function () {
         timer.text(timeTaken);
         timeTaken++
+        if (timeTaken >= 60){
+          
+        }
         if (roundFinished) {
           clearInterval(timeInterval);
         }
