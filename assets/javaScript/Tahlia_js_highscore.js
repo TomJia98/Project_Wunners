@@ -35,5 +35,12 @@ function settingUl() {
   li.append(highScoresList);
 }
 
+function displayScores(object) {
+  if (object) {
+    (settingUl).html(highScoresList);
+  }
+}
+displayScores(highScores);
+
 displayFinalTime(); //add this to the on click for when the game is finished
 console.log(highScores);
