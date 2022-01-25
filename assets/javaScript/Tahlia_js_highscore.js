@@ -1,4 +1,4 @@
-var timeTaken = 20;
+var timeTaken = 20; //using this for testing
 
 const amountofSongs = $("#amount-of-songs");
 const username = $("#username");
@@ -7,8 +7,6 @@ const highScores = JSON.parse(localStorage.getItem("highscore")) || [];
 
 const saveScoreBtn = $("#save");
 const finalScore = $("#final-score");
-
-const MAX_HIGH_SCORES = 5;
 
 function displayFinalTime() {
   finalScore.text(timeTaken);
@@ -37,5 +35,5 @@ function settingUl() {
   li.append(highScoresList);
 }
 
-displayFinalTime();
+displayFinalTime(); //add this to the on click for when the game is finished
 console.log(highScores);
