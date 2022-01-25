@@ -8,32 +8,64 @@ const highScores = JSON.parse(localStorage.getItem("highscore")) || [];
 const saveScoreBtn = $("#save");
 const finalScore = $("#final-score");
 
+function init() {
+  for (var i = 0; i < highScores.length; i++) {
+    //creates an li for every score that is stored within localstorage
+    settingLi(highScores[i]);
+  }
+}
+
 function displayFinalTime() {
   finalScore.text(timeTaken);
 }
 
 finalScore.innerText = highScores;
 
-var score = {
-  name: "",
-  amountofSongs: amountofSongs,
-  finalScore: timeTaken,
-};
-
 saveScoreBtn.on("click", function saveHighScore(e) {
-  e.preventDefault();
-  score.name = username.val();
-  localStorage.setItem("score", JSON.stringify(score));
-  settingUl();
+  // when user clicks on save
+  // create new score
+  // add new score to highScores
+  // save highScores to localstorage
+  // add li with new score
+
+  var newScore = {
+    name: username.val(),
+    // amountofSongs: amountofSongs,
+    amountofSongsValue: amountofSongs.val(),
+    finalScore: timeTaken,
+  };
+
+  highScores.push(newScore);
+
+  localStorage.setItem("highscore", JSON.stringify(highScores));
+
+  // if hiscore > 5 clear local storage and ul
+  if (highScores > 5) {
+    localStorage.clear();
+    highScoresList.empty();
+  }
+
+  settingLi(newScore);
 });
 
-function settingUl() {
+function settingLi(inputScore) {
   const li = $("<li>");
-  localStorage.setItem("highscore", JSON.stringify(score));
-  li.text(score.name + score.amountofSongs + score.finalScore);
+
+  li.text(
+    "Name: " +
+      inputScore.name +
+      " " +
+      "Amount of songs: " +
+      inputScore.amountofSongsValue +
+      " " +
+      "Time taken: " +
+      inputScore.finalScore
+  );
   li.addClass("high-score");
-  li.append(highScoresList);
+  highScoresList.append(li);
+
+  console.log(highScoresList);
 }
 
 displayFinalTime(); //add this to the on click for when the game is finished
-console.log(highScores);
+init();
