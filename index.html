@@ -20,7 +20,7 @@
     <!-- jQuery UI <link> tag -->
   </head>
   <body>
-    <div id="first-page" style="display: none" class="container">
+    <div id="first-page" class="container">
       <div class="row">
         <h1>Spicy Gospel</h1>
         <p>amount of songs</p>
@@ -56,7 +56,7 @@
       />
     </div>
 
-    <div id="highscore" class="container">
+    <div id="highscore" style="display: none" class="container">
       <!-- change display once the game is completed -->
 
       <h1 id="final-score">0</h1>
@@ -65,11 +65,11 @@
       <div class="row">
         <div class="four columns"></div>
         <div class="four columns">
-          <label for="username">Your Initials</label>
+          <label class="username">Your Initials</label>
           <input
             type="text"
             name="name"
-            id="username"
+            class="username"
             placeholder="Enter your Initials"
           />
         </div>
