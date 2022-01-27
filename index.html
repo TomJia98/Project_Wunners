@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spicy Gospel</title>
+    <title>TuneSplice</title>
     <link rel="stylesheet" href="assets/css/reset.css" />
     <!-- reset -->
     <link rel="stylesheet" href="assets/css/normalize.css" />
@@ -22,8 +22,10 @@
   <body>
     <div id="first-page" class="container">
       <div class="row">
-        <h1>Spicy Gospel</h1>
-        <p>amount of songs</p>
+        <h1>TuneSplice</h1>
+        <p>breif description of the webpage goes here</p>
+        <p>Current amount of songs to choose from is <span id="current-songs-value">5</span></p>
+        
         <input type="range" id="amount-of-songs" min="1" max="10" value="5" />
         <div class="row">
           <div class="six columns">
@@ -40,13 +42,15 @@
       </div>
     </div>
 
-    <div id="second-page" style="display:" class="container">
+    <div id="second-page" style="display:none;" class="container">
       <!-- change display once the game starts -->
 
       <span id="time"></span>
-
-      <ul id="finished-lyrics">The new changed lyrics are as follows</ul>
-
+<h2 id="loading">Loading song lyrics, just a moment</h2>
+<ul id="finished-lyrics">
+<img src="assets/images/taco-trip.gif" alt="taco tripping" id="taco-image">
+</ul>
+<div id="inputs-page-two">
       <input type="text" id="answer" />
       <input
         id="submit-answer"
@@ -54,6 +58,7 @@
         type="submit"
         value="Submit"
       />
+      </div>
     </div>
 
     <div id="highscore" style="display: none" class="container">
