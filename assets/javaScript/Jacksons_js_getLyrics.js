@@ -1,7 +1,9 @@
 var songsAmount = $("#amount-of-songs");
 var startBtn = $("#start");
 const timer = $("#time");
-const answer = $("#answer")
+const answer = $("#answer");
+const finishedLyrics = $("#finished-lyrics");
+var correctSong = ""
 
 var timeTaken = 1;
 var roundFinished = false;// change this value if the song is correctly guessed
@@ -9,7 +11,7 @@ var minimumWord = 4;//sets the minimum word size to be changed
 var loop = 0;//the basis for the "custom" for loop
 
 
-// timer.text("hikhjjkhn degfswgsr")
+// timer.innerHTML = "hikhjjkhn <br> degfswgsr"// an option
 
 startBtn.on("click", function (event) {
   
@@ -61,6 +63,8 @@ startBtn.on("click", function (event) {
       trackid: topTracks[randomNumber].track.track_id,
       lyrics: "",
     };
+
+    correctSong = chosenSong.songname;
     console.log(chosenSong);
 
 
@@ -97,14 +101,12 @@ function getRandomInt(max) {
 
 function startTimer(){// adds the timer
   var timeInterval = setInterval(function () {
-      timer.text(timeTaken);
-      timeTaken++
-      if (timeTaken >= 60){
-        
-      }
-      if (roundFinished) {
-        clearInterval(timeInterval);
-      }
+    
+    if (roundFinished) {
+      clearInterval(timeInterval);
+    }
+    timer.text(timeTaken);
+      timeTaken++        
     }, 1000);
 
 };
@@ -135,14 +137,15 @@ fetch("https://wordsapiv1.p.rapidapi.com/words/"+ word +"/typeOf", {
         //if it successfully finds the word in the database, but it has no synonyms, skip and return something to the console
     }
     else {
+      // if (lyricsArr[loop].charAt(0).toUpperCase() != lyricsArr[loop].charAt(0)){
       console.log(lyricsArr[loop])
     lyricsArr[loop] = data1.typeOf[getRandomInt(data1.typeOf.length)]
-    console.log("is now " + lyricsArr[loop]);
-    console.log(lyricsArr)
+    console.log("is now " + lyricsArr[loop]);}
+    // console.log(lyricsArr)
 loop++
 changeLyrics()
 // if the word is found, and it has synonyms, select one from random and set that new word as the original word in the Lyricsarray
-}
+
 })
 .catch(function(){
     console.log(lyricsArr[loop] + " --- " +"word not found, skipping");
@@ -157,12 +160,33 @@ else {
   //if the selected word is shorter than the set minimum size, do nothing and skip
 }}
 else {
-  console.log(lyricsArr)
+  // console.log(lyricsArr)
+  // debugger
+  var WIP = "";
+  for (var i = 0; i < lyricsArr.length -1;i++){
+    var x = lyricsArr[i+1].charAt(0);
+    if ( x.toUpperCase() == x && lyricsArr[i+1].length != 1 ){
+      var liEl = $("<li>");
+      liEl.text(WIP);
+      finishedLyrics.append(liEl);
+      WIP = ""
+    } else {
+      if( WIP == ""){
+        WIP = lyricsArr[i] + " " + lyricsArr[i+1] + " ";
+      }else{
+      WIP += lyricsArr[i+1] + " ";
+      console.log(WIP);
+      }
+    }
+
+  
+  }
 
   //find a way to insert a line break before each capital letter
-  var finished = lyricsArr.join(" ");
-  console.log(finished);
-  $("#finished-lyrics").text(finished)
+  // var finished = lyricsArr.join(" ");
+  // console.log(finished);
+  // finishedLyrics.text(finished)
+
   startTimer();//once the lyrics are loaded, start the timer
   }}
 
@@ -177,7 +201,7 @@ else {
   
 
 $("#submit-answer").on("click", function clickSubmit(){
-  if (answer.val()== chosenSong.songname){
+  if (answer.val()== correctSong){
       console.log("correct song chosen");
       roundFinished = true;
       //add the function to load the highscore page here
