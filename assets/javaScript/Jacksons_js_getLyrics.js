@@ -245,14 +245,15 @@ function changeLyrics(){//self made for loop with different outcomes based on th
      changeLyrics()
    })})});
  
+   init();
 
 $("#submit-answer").on("click", function clickSubmit(){
     if (answer.val()== correctSong){
         console.log("correct song chosen");
         roundFinished = true;
+        finalScore.text(timeTaken);
         secondPage.attr("style", "display:none");
         thirdPage.attr("style", "display:;");
-        init();
         //upon a correct guess, stop the timer and load the highscore page
     
     } else {
