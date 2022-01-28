@@ -6,6 +6,18 @@ const finishedLyrics = $("#finished-lyrics");
 const firstPage = $("#first-page");
 const secondPage = $("#second-page");
 const inputs2ndPage = $("#inputs-page-two");
+const thirdPage = $("#highscore")
+const checkHighscores = $("#check-scores");
+const clearHighscores =$("#clear-all");
+
+const amountofSongs = $("#amount-of-songs");
+const username = $("#username");
+const highScoresList = $("#scores");
+let highScores = JSON.parse(localStorage.getItem("highscore")) || [];
+
+const saveScoreBtn = $("#save");
+const tryAgainBtn = $("#try-again");
+const finalScore = $("#final-score");
 
 var correctSong = ""
 let isFirstRun = true;// sets the inital run
@@ -13,6 +25,60 @@ var timeTaken = 1;
 var roundFinished = false;// change this value if the song is correctly guessed
 var minimumWord = 4;//sets the minimum word size to be changed
 var loop = 0;//the basis for the "custom" for loop
+var allSongs = [];
+var chosenSong = {
+  songname: "",
+  trackid: "",
+  lyrics: "",
+}
+
+
+
+function init() {
+  //Places the game time as the final score
+  finalScore.text(timeTaken);
+
+  //Grabs the last high score
+  const latestScore = highScores[highScores.length - 1];
+  if (latestScore !== undefined) {
+    finalScore.innerText = latestScore.finalScore;
+  }
+
+  //Creates an li for every score that is stored within localstorage
+  for (var i = 0; i < highScores.length; i++) {
+    settingUl(highScores[i]);
+  }
+}
+
+
+function startTimer(){// adds the timer, which stops if roundFinished is set to True
+  var timeInterval = setInterval(function () {
+    
+    if (roundFinished) {
+      clearInterval(timeInterval);
+    }
+    timer.text(timeTaken);
+      timeTaken++        
+    }, 1000);
+
+};
+
+
+function settingUl(inputScore) {//appends the scores currently in LocalStorage to the page
+  const li = $("<li>");
+  li.text(
+    "Name: " +
+      inputScore.name +
+      " " +
+      "Amount of songs: " +
+      inputScore.amountofSongsValue +
+      " " +
+      "Time taken: " +
+      inputScore.finalScore
+  );
+  li.addClass("high-score");
+  highScoresList.append(li);
+}
 
 
 
@@ -43,30 +109,25 @@ startBtn.on("click", function (event) {
 
 
   }).then(function (data) {
-    console.log(data);
-    var allSongs = [];
     var topTracks = data.message.body.track_list;
     for (var i = 0; i < topTracks.length; i++) {
       allSongs[i] = topTracks[i].track.track_name;
-
-
+      
       $(function () {
         answer.autocomplete({
           source: allSongs,
         });
       });// autofills from the allsongs array
 
+
     }
-    console.log(allSongs);
  
     var randomNumber = (Math.random() * topTracks.length).toFixed(0) - 1;
 
-    console.log(topTracks);
-    var chosenSong = {
-      songname: topTracks[randomNumber].track.track_name,
-      trackid: topTracks[randomNumber].track.track_id,
-      lyrics: "",// adds the needed data for changing the lyrics and checking the song to an object
-    };
+    
+      chosenSong.songname = topTracks[randomNumber].track.track_name
+      chosenSong.trackid = topTracks[randomNumber].track.track_id
+    
 
     correctSong = chosenSong.songname;
     console.log(chosenSong);
@@ -86,9 +147,10 @@ startBtn.on("click", function (event) {
       jsonpCallback: "jsonp_callback",
       contentType: "application/json",
     }).then(function (data) {
+
       chosenSong.lyrics = data.message.body.lyrics.lyrics_body;
     chosenSong.lyrics =  chosenSong.lyrics.slice(0, -74)
-      console.log(chosenSong.lyrics + "_____________________________________")
+    //remove the last section from the lyrics, which is always the same and not needed
       
 
 function getWords(text){
@@ -99,18 +161,6 @@ function getWords(text){
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max)
-};
-
-function startTimer(){// adds the timer
-  var timeInterval = setInterval(function () {
-    
-    if (roundFinished) {
-      clearInterval(timeInterval);
-    }
-    timer.text(timeTaken);
-      timeTaken++        
-    }, 1000);
-
 };
 
 var lyricsArr = getWords(chosenSong.lyrics);
@@ -202,6 +252,10 @@ $("#submit-answer").on("click", function clickSubmit(){
   if (answer.val()== correctSong){
       console.log("correct song chosen");
       roundFinished = true;
+      secondPage.attr("style", "display:none");
+      thirdPage.attr("style", "display:;")
+      init();
+
       //add the function to load the highscore page here
   
   } else {
@@ -209,7 +263,57 @@ $("#submit-answer").on("click", function clickSubmit(){
   }
   })
 
+  
+saveScoreBtn.on("click", function saveHighScore(e) {
+  //When user clicks on save, create new score
+  var newScore = {
+    name: username.val(),
+    amountofSongsValue: amountofSongs.val(),
+    finalScore: timeTaken,
+  };
+
+  //Adds new score to highScores
+  highScores.push(newScore);
+
+  //Saves highScores to localstorage
+  localStorage.setItem("highscore", JSON.stringify(highScores));
+
+  //Hides the username input
+  username.attr("style", "display: none;");
+
+  saveScoreBtn.attr("style", "display:none;")
+  clearHighscores.attr("style", "display:;")
+  //hides the save button and shows the clear all button
+
+  settingUl(newScore);
+  //Adds li with new score
+});
+
 
   songsAmount.on("input", function(){
     $("#current-songs-value").text(songsAmount.val());
   })
+
+  
+tryAgainBtn.on("click", function resetPage() {
+  location.reload();
+});
+
+clearHighscores.on("click", function(){
+localStorage.clear();
+location.reload();
+firstPage.attr("style", "display:none;")
+thirdPage.attr("style", "display:;")
+});
+
+checkHighscores.on("click", function(){
+  firstPage.attr("style", "display:none;");
+  thirdPage.attr("style", "display:;");
+  username.attr("style", "display: none;");
+  saveScoreBtn.attr("style", "display:none;")
+  clearHighscores.attr("style", "display:;")
+
+
+
+
+})

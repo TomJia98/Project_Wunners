@@ -24,9 +24,9 @@
       <div class="row">
         <h1>TuneSplice</h1>
         <p>breif description of the webpage goes here</p>
-        <p>Current amount of songs to choose from is <span id="current-songs-value">5</span></p>
+        <p>Current amount of songs to choose from is <span id="current-songs-value">15</span></p>
         
-        <input type="range" id="amount-of-songs" min="1" max="10" value="5" />
+        <input type="range" id="amount-of-songs" min="5" max="25" value="15" />
         <div class="row">
           <div class="six columns">
             <button id="start" class="button-primary">
@@ -48,7 +48,7 @@
       <span id="time"></span>
 <h2 id="loading">Loading song lyrics, just a moment</h2>
 <ul id="finished-lyrics">
-<img src="assets/images/taco-trip.gif" alt="taco tripping" id="taco-image">
+<img src="assets/images/tapping-foot-waiting.gif" alt="waiting while foot taps" id="taco-image">
 </ul>
 <div id="inputs-page-two">
       <input type="text" id="answer" />
@@ -64,13 +64,13 @@
     <div id="highscore" style="display: none" class="container">
       <!-- change display once the game is completed -->
 
-      <h1 id="final-score">0</h1>
+      <h1 id="final-score"></h1>
       <h2>Highscores</h2>
 
       <div class="row">
         <div class="four columns"></div>
         <div class="four columns">
-          <label for="username">Your Initials</label>
+          <!-- <label for="username" >Your Initials</label> -->
           <input
             type="text"
             name="name"
@@ -90,6 +90,8 @@
         </div>
         <div class="six columns">
           <button id="try-again" class="button-primary">Try Again</button>
+          <button id="clear-all" style="display:none;" class="button-primary">Clear All Highscores</button>
+
         </div>
       </div>
     </div>
