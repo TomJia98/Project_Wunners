@@ -60,7 +60,7 @@ function startTimer(){// adds the timer, which stops if roundFinished is set to 
       if (roundFinished) {//stops the timer if the game is over, mainly to avoid errors
         clearInterval(timeInterval);
       }
-      timer.text(timeTaken);
+      timer.text(timeTaken + " seconds");
         timeTaken++        
       }, 1000)};
 
