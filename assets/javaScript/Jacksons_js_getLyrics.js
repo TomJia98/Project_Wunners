@@ -9,7 +9,7 @@ const inputs2ndPage = $("#inputs-page-two");
 const thirdPage = $("#highscore")
 const checkHighscores = $("#check-scores");
 const clearHighscores =$("#clear-all");
-
+const giveUp = $("#give-up");
 const amountofSongs = $("#amount-of-songs");
 const username = $("#username");
 const highScoresList = $("#scores");
@@ -244,6 +244,7 @@ function changeLyrics(){//self made for loop with different outcomes based on th
         }};
      changeLyrics()
    })})});
+   // ___________________________________________________________________________
  
    init();
 
@@ -251,7 +252,7 @@ $("#submit-answer").on("click", function clickSubmit(){
     if (answer.val()== correctSong){
         console.log("correct song chosen");
         roundFinished = true;
-        finalScore.text(timeTaken);
+        finalScore.text(timeTaken + 1);
         secondPage.attr("style", "display:none");
         thirdPage.attr("style", "display:;");
         //upon a correct guess, stop the timer and load the highscore page
@@ -263,6 +264,7 @@ $("#submit-answer").on("click", function clickSubmit(){
       }, 1000);
     }// if the answer is incorrect, add 10 seconds to the timer and tell the user they where incorrect
   })
+// ___________________________________________________________________________
 
   
 saveScoreBtn.on("click", function saveHighScore(e) {
@@ -288,16 +290,22 @@ saveScoreBtn.on("click", function saveHighScore(e) {
     settingUl(newScore);
     //Adds li with new score
 });
+// ___________________________________________________________________________
 
 
   songsAmount.on("input", function(){//changes the value on the first page to show the user the sliders value
      $("#current-songs-value").text(songsAmount.val());
   });
+// ___________________________________________________________________________
 
+giveUp.on("click", function(){
+  location.reload();
+})
   
 tryAgainBtn.on("click", function resetPage() {//the click event for the try again button on page 3
   location.reload();
 });//reloads the page to reset all the variables back to their beginning state
+// ___________________________________________________________________________
 
 
 clearHighscores.on("click", function(){//the click event for the clear highscores button on page 3
@@ -307,6 +315,7 @@ clearHighscores.on("click", function(){//the click event for the clear highscore
     thirdPage.attr("style", "display:;")
     //clear the local storage, reset the page( easier than resetting all the individual variables ) 
 });
+// ___________________________________________________________________________
 
 
 checkHighscores.on("click", function(){// the click event for the check highscores button on page 1
@@ -318,6 +327,7 @@ checkHighscores.on("click", function(){// the click event for the check highscor
     finalScore.attr("style", "display:none");
     // hide all the non needed elements and show the highscores
 });
+// ___________________________________________________________________________
 // end of events
 
 
