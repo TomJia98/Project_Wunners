@@ -14,7 +14,9 @@ After reading through the documentation we decided to create a game where the ap
 ## User Story
 
 AS AN individual who is looking to test their knowledge of both popular songs and vocabulary...
-I WANT to be able to visit a webpage that updates with the current top charts from which it randomly picks a song and then changes some of its lyrics with synonyms
+
+I WANT to be able to visit a webpage that updates with the current top charts from which it randomly picks a song and then changes some of its lyrics with synonyms.
+
 SO THAT I can attempt to guess the altered song's title, input it and view my previous high score (time taken).
 
 <!-- What did you learn? -->
@@ -53,7 +55,6 @@ The formatting of the alterred lyrics didn't carry over the line-breaks after th
 ![Mockup image!](assets/images/loading-page.png)
 ![Mockup image!](assets/images/lyric-page.png)
 ![Mockup image!](assets/images/end-page.png)
-
 
 ## Links to repository and aplication
 

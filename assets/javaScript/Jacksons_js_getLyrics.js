@@ -135,7 +135,7 @@ startBtn.on("click", function (event) {
     chosenSong.songname = topTracks[randomNumber].track.track_name;
     chosenSong.trackid = topTracks[randomNumber].track.track_id;
     correctSong = chosenSong.songname;
-    console.log(correctSong);
+    // console.log(correctSong);
     //sets the properties in the object chosenSong to the ones selected by the randomizer
 
     $.ajax({
@@ -283,7 +283,7 @@ saveScoreBtn.on("click", function saveHighScore(e) {
     name: username.val(),
     amountofSongsValue: amountofSongs.val(),
     finalScore: timeTaken,
-  }; console.log(newScore.name)
+  }; 
 
   if (newScore.name == "") {
     $("#no-username").attr("style", "display:;");
