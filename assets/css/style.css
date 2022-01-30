@@ -1,4 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+  background-image: url("/assets/images/background-image.jpeg");
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+  width: 450px;
+  margin: 20px;
+}
+
 ul {
   list-style-type: none;
   line-height: normal;
+}
+
+img {
+  height: 300px;
+  width: 300px;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+#first-page {
+  background-color: white;
+  border: black solid 5px;
+  border-radius: 30px;
+  padding: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  height: fit-content;
+  width: 600px;
+}
+
+#second-page {
+  background-color: white;
+  border: black solid 5px;
+  border-radius: 30px;
+  padding: 50px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  width: 600px;
+}
+
+#loading {
+  font-size: 20px;
+}
+
+#finished-lyrics {
+  height: fit-content;
+}
+
+#highscore {
+  background-color: white;
+  border: black solid 5px;
+  border-radius: 30px;
+  padding: 20px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  width: 600px;
+}
+
+#time {
+  display: flex;
+  justify-content: right;
+  font-size: 25px;
+}
+
+#amount-of-songs {
+  width: 100%;
+  
+}
+
+#btn-format {
+  display: flex;
+  justify-content: center;
+}
+
+#username {
+  width: 100%;
+}
+
+#how-to-play {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bolder;
 }

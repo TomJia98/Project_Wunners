@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TuneSplice</title>
+    <title>TuneSplice </title>
+    <link rel="icon" type="image/x-icon" href="assets/images/music-symbol-icon.png">
+    <!-- title bar icon -->
     <link rel="stylesheet" href="assets/css/reset.css" />
     <!-- reset -->
     <link rel="stylesheet" href="assets/css/normalize.css" />
@@ -23,83 +25,100 @@
     <div id="first-page" class="container">
       <div class="row">
         <h1>TuneSplice</h1>
-        <p>Welcome to <b>TuneSplice</b>, the number one game for pitting your knowledge of todays biggest hits
-        up against your friends!
-      <br>
-    To play, simply select the amount of songs from the current top charts to guess from, and select <b>Start</b>
-    <br>
-    Then simply guess which song the changed lyrics originally came from, whilst the timer ticks on!
-    <br>
-    </p>
-        <p>Current amount of songs to choose from is <span id="current-songs-value">15</span></p>
-        
+        <p>
+          Welcome to <b>TuneSplice</b>, the number one game for pitting your
+          knowledge of today's biggest hits up against your friends!
+        </p>
+          <p>
+            <span id="how-to-play">How to Play</span><br />
+          1. Select the amount of songs to guess from using the slider and select <b>Start</b><br />
+          2. Guess which song the changed lyrics originally came from whilst the timer ticks on<br />
+          3. Guess the right song<br />
+        </p>
+        <div>
+        <p>
+          Amount of songs to choose from:
+          <span id="current-songs-value">15</span>
+        </p> 
         <input type="range" id="amount-of-songs" min="5" max="25" value="15" />
-        <div class="row">
+      </div>
+        <div class="row btn-format">
           <div class="six columns">
-            <button id="start" class="button-primary">
-              Start
-            </button>
+            <button id="start" class="button-primary">Start</button>
           </div>
           <div class="six columns">
-            <button id="check-scores" class="button-primary">
-              view highscores
+            <button id="check-scores" class="button-primary">Highscores
             </button>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="second-page" style="display:none;" class="container">
+    <div id="second-page" style="display: none" class="container">
       <!-- change display once the game starts -->
 
-      <span id="time"></span>
-<h2 id="loading">Loading song lyrics, just a moment</h2>
-<ul id="finished-lyrics">
-<img src="assets/images/tapping-foot-waiting.gif" alt="waiting while foot taps" id="taco-image">
-</ul>
-<div id="inputs-page-two">
-      <input type="text" id="answer" />
-      <input
-        id="submit-answer"
-        class="button-primary"
-        type="submit"
-        value="Submit"
-      />
-      <input id="give-up" type="button" class="button-primary" value="Give up?">
-      </div>
-      <p id="incorrect-guess" style="display:none;">~Incorrect~</p>
-    </div>
-
-    <div id="highscore" style="display: none" class="container">
-      <!-- change display once the game is completed -->
-
-      <h1 id="final-score"></h1>
-      <h2>Highscores</h2>
-
       <div class="row">
-        <div class="four columns"></div>
-        <div class="four columns">
+        <span id="time"></span>
+        <h2 id="loading">Loading song lyrics, just a moment...</h2>
+        <ul id="finished-lyrics">
+          <img
+            src="assets/images/tapping-foot-waiting.gif"
+            alt="waiting while foot taps"
+            id="taco-image"
+          />
+        </ul>
+        <div id="inputs-page-two">
+          <input type="text" id="answer" />
           <input
-            type="text"
-            name="name"
-            id="username"
-            placeholder="Enter your Initials"
+            id="submit-answer"
+            class="button-primary"
+            type="submit"
+            value="Submit"
+          />
+          <input
+            id="give-up"
+            type="button"
+            class="button-primary"
+            value="Give up?"
           />
         </div>
-        <div class="four columns"></div>
+        <p id="incorrect-guess" style="display: none">~Incorrect~</p>
       </div>
+    </div>
 
-      <ul id="scores"></ul>
+    <div id="highscore" class="container" style="display: none">
+      <!-- change display once the game is completed -->
 
       <div class="row">
-        <div class="six columns">
-          <button id="save" class="button-primary" type="submit"
-          >Save</button>
-        </div>
-        <div class="six columns">
-          <button id="try-again" class="button-primary">Try Again</button>
-          <button id="clear-all" style="display:none;" class="button-primary">Clear All Highscores</button>
+        <h1 id="final-score"></h1>
+        <h2>Highscores</h2>
 
+        <div class="row">
+          <!-- <div class="four columns"></div> -->
+          <div id="no-username" style="display: none">Please enter a name!</div>
+            <input
+              type="text"
+              name="name"
+              id="username"
+              placeholder="Enter your Initials"
+            />
+            <!-- <div class="four columns"></div> -->
+          </div>
+          
+          <ul id="scores"></ul>
+          
+        <div class="row">
+          <div class="six columns">
+            <button id="save" class="button-primary" type="submit">Save</button>
+          </div>
+          <div class="six columns">
+            <button id="try-again" class="button-primary">Try Again</button>
+          </div>
+          <div class="five columns">
+          <button id="clear-all" style="display: none" class="button-primary">
+            Clear All
+          </button>
+        </div>
         </div>
       </div>
     </div>
