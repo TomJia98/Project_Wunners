@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 body {
   background-color: red;
-  background-image: url("/assets/images/background-image.jpeg");
-  font-family: 'Montserrat', sans-serif;
+  background-image: url("../images/background-image.jpeg");
+  font-family: "Montserrat", sans-serif;
 }
 
 h1 {
@@ -93,7 +93,6 @@ h2 {
 
 #amount-of-songs {
   width: 100%;
-  
 }
 
 #btn-format {
